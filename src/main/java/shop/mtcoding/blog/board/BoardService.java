@@ -25,10 +25,10 @@ public class BoardService {
     private final UserJPARepository userJPARepository;
     private final ReplyJPARepository replyJPARepository;
 
-    public BoardResponse.DTO 글조회(int boardId){
+    public BoardResponse.DetailDTO 글조회(int boardId,SessionUser sessionUser) {
         Board board = boardJPARepository.findById(boardId)
                 .orElseThrow(() -> new Exception404("게시글을 찾을 수 없습니다"));
-        return new BoardResponse.DTO(board);
+        return new BoardResponse.DetailDTO(board,sessionUser);
     }
 
     @Transactional
